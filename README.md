@@ -1,8 +1,21 @@
-﻿# 京东商智达人直播取数工具
+# 京东商智达人直播取数工具
 
 从已登录的京东商智后台批量提取“达人 / 点位 / 单品”数据，写入 Excel，并可生成产出分析页。
 
+仓库：<https://github.com/zpxpeixun-source/jd-shangzhi-live-data>
+
 不依赖 npm 包；Node 只负责浏览器会话和接口取数，Python + openpyxl 负责写表和校验。
+
+## 安装为 DSH skill
+
+DSH 会扫描 `<dshHome>/skills/<name>/SKILL.md`。直接克隆到用户 skill 目录：
+
+```powershell
+git clone https://github.com/zpxpeixun-source/jd-shangzhi-live-data.git `
+  "$HOME\.dsh\skills\jd-shangzhi-live-data"
+```
+
+新开会话后可用 `/jd-shangzhi-live-data` 调用，模型也会按 `description` 自动发现。
 
 ## 目录
 
