@@ -1,0 +1,76 @@
+{
+  "filterList": [
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": ">=",
+      "type": "string"
+    },
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": "<=",
+      "type": "string"
+    },
+    {
+      "propertyName": "time_interval",
+      "values": [
+        "BY_DAY"
+      ],
+      "op": "=",
+      "type": "string"
+    }
+  ],
+  "dimList": [
+    "dt",
+    "time_interval",
+    "sku_id"
+  ],
+  "metricList": [
+    "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_brow_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_15day"
+  ],
+  "groupList": [
+    "sku_id"
+  ],
+  "attributeList": [
+    "sku_id"
+  ],
+  "commonParam": {
+    "platformId": 0,
+    "userErp": "",
+    "pageManagerErp": "",
+    "period": 0,
+    "startTime": 0,
+    "endTime": 0,
+    "indexFreq": "OFFLINE",
+    "description": "维度分析指标服务",
+    "allJdMall": false,
+    "annotation": "基础",
+    "page": -1,
+    "pageSize": 1000,
+    "sortField": "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "sortAsc": false,
+    "resAppKey": "lowcode5061",
+    "traceId": "a4251a3a-32fc-41fa-8970-f3063d192eac",
+    "batchId": "d86f671f-9a55-4d29-afe0-c60327f8271b"
+  }
+}

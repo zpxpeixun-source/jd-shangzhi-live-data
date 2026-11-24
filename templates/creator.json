@@ -1,0 +1,79 @@
+{
+  "filterList": [
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": ">=",
+      "type": "string"
+    },
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": "<=",
+      "type": "string"
+    },
+    {
+      "propertyName": "time_interval",
+      "values": [
+        "BY_DAY"
+      ],
+      "op": "=",
+      "type": "string"
+    }
+  ],
+  "dimList": [
+    "dt",
+    "time_interval",
+    "author_id"
+  ],
+  "metricList": [
+    "jdr_sch_content_brow_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_brow_content__page_cnt_lead_view_zh",
+    "fo_jdr_sch_per_user_duration_lead_view_zh",
+    "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_brow_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_15day"
+  ],
+  "groupList": [
+    "author_id"
+  ],
+  "attributeList": [
+    "author_id"
+  ],
+  "commonParam": {
+    "platformId": 0,
+    "userErp": "",
+    "pageManagerErp": "",
+    "period": 0,
+    "startTime": 0,
+    "endTime": 0,
+    "indexFreq": "OFFLINE",
+    "description": "维度分析指标服务",
+    "allJdMall": false,
+    "annotation": "基础",
+    "page": -1,
+    "pageSize": 1000,
+    "sortField": "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "sortAsc": false,
+    "resAppKey": "lowcode5061",
+    "traceId": "41ed208b-faff-4f31-813d-8cfff198d176",
+    "batchId": "7c1a0b17-cc5c-429f-9cba-b210578a6a83"
+  }
+}

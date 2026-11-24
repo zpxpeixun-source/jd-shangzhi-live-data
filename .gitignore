@@ -1,0 +1,10 @@
+.env
+.env.*
+*.xlsx
+raw*.json
+validation*.json
+.jdsz-browser/
+.browser-profile/
+__pycache__/
+*.pyc
+.DS_Store

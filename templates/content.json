@@ -1,0 +1,85 @@
+{
+  "filterList": [
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": ">=",
+      "type": "string"
+    },
+    {
+      "propertyName": "dt",
+      "values": [
+        "2026-11-23"
+      ],
+      "op": "<=",
+      "type": "string"
+    },
+    {
+      "propertyName": "time_interval",
+      "values": [
+        "BY_DAY"
+      ],
+      "op": "=",
+      "type": "string"
+    }
+  ],
+  "dimList": [
+    "dt",
+    "time_interval",
+    "content_id",
+    "content_type_cd",
+    "content_cate_cd"
+  ],
+  "metricList": [
+    "jdr_sch_content_brow_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_brow_content__page_cnt_lead_view_zh",
+    "fo_jdr_sch_per_user_duration_lead_view_zh",
+    "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_brow_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_cnt_lead_view_zh",
+    "jdr_sch_content_intr_add_cart_content__page_qtty_lead_view_zh",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_7day",
+    "jdr_sch_content_intr_ord_ord_amt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_cnt_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_ord_dis_qtty_lead_ord_zh@content_15day",
+    "jdr_sch_content_intr_ord_sku_dis_qtty_lead_ord_zh@content_15day"
+  ],
+  "groupList": [
+    "content_id",
+    "content_type_cd",
+    "content_cate_cd"
+  ],
+  "attributeList": [
+    "content_id",
+    "content_type_cd",
+    "content_cate_cd"
+  ],
+  "commonParam": {
+    "platformId": 0,
+    "userErp": "",
+    "pageManagerErp": "",
+    "period": 0,
+    "startTime": 0,
+    "endTime": 0,
+    "indexFreq": "OFFLINE",
+    "description": "维度分析指标服务",
+    "allJdMall": false,
+    "annotation": "基础",
+    "page": -1,
+    "pageSize": 1000,
+    "sortField": "jdr_sch_content_intr_brow_content__page_cnt_lead_view_zh",
+    "sortAsc": false,
+    "resAppKey": "lowcode5061",
+    "traceId": "40a8c0ce-8084-4108-afac-6ce5e1805ba6",
+    "batchId": "8ef1f6ed-05ed-4613-bcb4-c752762d8bca"
+  }
+}
