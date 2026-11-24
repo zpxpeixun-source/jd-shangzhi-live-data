@@ -20,7 +20,7 @@ git clone https://github.com/zpxpeixun-source/jd-shangzhi-live-data.git `
 ## 目录
 
 ```text
-bin/jdsz-live.mjs          取数 CLI
+bin/jdsz-live.mjs          取数 + 内容类型映射 CLI
 lib/cdp.mjs                Chrome CDP 连接、Cookie 读取
 lib/api.mjs                商智接口签名与查询
 lib/extract.mjs            单日“达人→内容→单品”提取
@@ -76,6 +76,19 @@ node bin/jdsz-live.mjs extract --from 2026-05-01 --to 2026-11-23 \
 ```
 
 输出为 UTF-8 JSON，结构见 `docs/data-contract.md`。
+
+默认只取**直播**（`content_type_cd=200`）。如果已有内容 ID 需要补类型：
+
+```bash
+node bin/jdsz-live.mjs types \
+  --ids content_ids.json \
+  --from 2026-05-01 --to 2026-11-23 \
+  --out content_type_map.json
+```
+
+类型编码：`200=直播`、`11=视频`、`25=图文`。`content_ids.json` 是内容 ID 数组，输出是 `{内容ID: 类型编码}`。
+
+**单品区分类型**：同一达人同一天只有一种内容类型时可以直接映射；同时有直播和视频时，SKU 金额是合并的，需要按类型分别查询单品。若拆分金额之和大于原合并金额，说明订单被多类型重复归因，应保留“混合”并保留原金额。
 
 ## 3. 写入 Excel
 

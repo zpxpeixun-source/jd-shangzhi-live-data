@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getApiContext, loadTemplate } from '../lib/api.mjs';
+import { getApiContext, loadTemplate, clone, query } from '../lib/api.mjs';
 import { connectPage, getAllCookies, findCookie } from '../lib/cdp.mjs';
 import { extractDate, datesBetween } from '../lib/extract.mjs';
 
@@ -29,12 +30,14 @@ function usage() {
   node bin/jdsz-live.mjs doctor  [--cdp-port 9222] [--pin PIN]
   node bin/jdsz-live.mjs extract --from 2026-05-01 --to 2026-10-31 --out raw.json
   node bin/jdsz-live.mjs extract --date 2026-10-01,2026-10-02 --out raw.json
+  node bin/jdsz-live.mjs types --ids content_ids.json --from 2026-05-01 --to 2026-11-23 --out type_map.json
 
 参数:
   --from / --to     日期范围（含首尾）
   --date            指定日期，逗号分隔，可重复
   --exclude         排除日期，逗号分隔
-  --out             输出 JSON 路径，默认 raw.json
+  --ids             content_id 数组 JSON（types 命令）
+  --out             输出 JSON 路径，默认 raw.json / content_type_map.json
   --cdp-port        Chrome 调试端口，默认 9222
   --pin             商智 p-pin；默认读 JDSZ_PIN 或浏览器 pin Cookie
   --sleep           每日间隔毫秒，默认 120
@@ -127,11 +130,46 @@ async function extract(opts) {
   console.log(JSON.stringify(summary, null, 2));
 }
 
+async function types(opts) {
+  if (!opts.ids) throw new Error('请提供 --ids content_ids.json');
+  const from = opts.from;
+  const to = opts.to;
+  if (!from || !to) throw new Error('请提供 --from/--to（类型查询需要日期范围）');
+  const raw = JSON.parse(fs.readFileSync(path.resolve(opts.ids), 'utf8'));
+  const ids = [...new Set((Array.isArray(raw) ? raw : []).map(String))];
+  if (!ids.length) throw new Error('ids 文件必须是内容 ID 数组');
+  const ctx = await getApiContext({ port: Number(opts['cdp-port'] || 9222), pin: opts.pin });
+  const tpl = loadTemplate(ROOT, 'content');
+  const map = {};
+  for (let i = 0; i < ids.length; i += 100) {
+    const batch = ids.slice(i, i + 100);
+    const body = clone(tpl);
+    body.filterList = [
+      { propertyName: 'dt', values: [from], op: '>=', type: 'string' },
+      { propertyName: 'dt', values: [to], op: '<=', type: 'string' },
+      { propertyName: 'time_interval', values: ['BY_DAY'], op: '=', type: 'string' },
+      { propertyName: 'content_id', values: batch, op: 'in', type: 'string' },
+    ];
+    body.commonParam.pageSize = 2000;
+    body.commonParam.traceId = crypto.randomUUID();
+    body.commonParam.batchId = crypto.randomUUID();
+    const j = await query(body, ctx);
+    for (const r of (j.body?.data || [])) map[String(r[0])] = String(r[1]);
+    console.error(`types batch ${i} mapped=${Object.keys(map).length}/${ids.length}`);
+  }
+  const out = path.resolve(opts.out || 'content_type_map.json');
+  fs.writeFileSync(out, JSON.stringify(map, null, 2), 'utf8');
+  const count = {};
+  for (const v of Object.values(map)) count[v] = (count[v] || 0) + 1;
+  console.log(JSON.stringify({ out, ids: ids.length, mapped: Object.keys(map).length, types: count }, null, 2));
+}
+
 const opts = parse(process.argv.slice(2));
 const cmd = opts._[0] || 'help';
 try {
   if (cmd === 'doctor') await doctor(opts);
   else if (cmd === 'extract') await extract(opts);
+  else if (cmd === 'types') await types(opts);
   else { usage(); process.exit(cmd === 'help' ? 0 : 1); }
 } catch (e) {
   console.error('ERROR', e.message);
